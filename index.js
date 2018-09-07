@@ -85,13 +85,13 @@ app.use(
 
 //---- GET and DELETE first cat ----// 
 app.get('/api/cat', (req, res, next) => {
-  return res.json(peek(catsQ));
+  return res.json(catsQ.peek());
 })
 catsQ.dequeue();
 
 //---- GET and DELETE first dog ----//
 app.get('/api/dog', (req, res, next) => {
-  return res.json(peek(dogsQ));
+  return res.json(dogsQ.peek());
 })
 dogsQ.dequeue();
 
