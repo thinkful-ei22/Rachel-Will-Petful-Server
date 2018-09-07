@@ -87,6 +87,7 @@ app.use(
 app.get('/api/cat', (req, res, next) => {
   console.log('Reached Cat GEt endpoint>>>>>>');
   return res.json(catsQ.peek());
+
 });
 
 
