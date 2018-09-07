@@ -31,6 +31,11 @@ class Queue {
     //make the new node the last item on the queue
     this.last = node;
   }
+
+  peek() {
+    return this.first.value;
+  }
+  
   dequeue() {
     //if the queue is empty, there is nothing to return
     if (this.first === null) {

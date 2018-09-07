@@ -39,7 +39,7 @@ dogsQ.enqueue({
   breed: "St. Bernard",
   story: "Owners retired and moved to a tropical climate after deciding they no longer wanted to or needed help to take care of their grandchildren"
 });
-//console.log(dogsQ);
+console.log(dogsQ);
 
 //Queue instance of CATS
 const catsQ = new Queue();
@@ -70,7 +70,6 @@ catsQ.enqueue({
   breed: 'Diluted tortoiseshell',
   story: 'Scrappy little runt of the litter found in park just a few days old'
 });
-//console.log(catsQ);
 
 app.use(
   morgan(process.env.NODE_ENV === 'production' ? 'common' : 'dev', {
@@ -84,33 +83,19 @@ app.use(
   })
 );
 
-//peek() function
-function peek(q){
-  return q.first;
-}
-
-//---- GET first cat ----// 
+//---- GET and DELETE first cat ----// 
 app.get('/api/cat', (req, res, next) => {
   return res.json(peek(catsQ));
 })
+catsQ.dequeue();
 
-console.log(peek(catsQ))
-
-//---- DELETE  first cat ----//
-app.delete('/api/cat', (req, res) => {
-  res.json(catArray.shift()).sendStatus(200);
-})
-
-//---- GET first dog ----//
+//---- GET and DELETE first dog ----//
 app.get('/api/dog', (req, res, next) => {
-  return res.json(dogArray[0]);
+  return res.json(peek(dogsQ));
 })
+dogsQ.dequeue();
 
-//---- DELETE first dog ----//
-app.delete('/api/dog', (req, res) => {
-  res.json(dogArray.shift()).sendStatus(200);
-});
-
+//
 function runServer(port = PORT) {
   const server = app
     .listen(port, () => {
