@@ -85,19 +85,30 @@ app.use(
 
 //---- GET and DELETE first cat ----// 
 app.get('/api/cat', (req, res, next) => {
+  console.log('Reached Cat GEt endpoint>>>>>>');
   return res.json(catsQ.peek());
-})
-catsQ.dequeue();
+});
+
+
+app.delete('/api/cat', (req, res, next) => {
+  //console.log('DElete Dog Reached');
+  catsQ.dequeue();
+  return res.json();
+});
+
 
 //---- GET and DELETE first dog ----//
 app.get('/api/dog', (req, res, next) => {
   return res.json(dogsQ.peek());
-})
+
+});
 
 app.delete('/api/dog', (req, res, next) => {
+  console.log('DElete Dog Reached');
   dogsQ.dequeue();
+  return res.json();
 });
-console.log("======");
+
 
 //
 function runServer(port = PORT) {
