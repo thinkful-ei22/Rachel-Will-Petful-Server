@@ -8,11 +8,12 @@ const { PORT, CLIENT_ORIGIN } = require('./config');
 const { dbConnect } = require('./db-mongoose');
 // const {dbConnect} = require('./db-knex');
 
-const app = express();
-
 // ~~ GET routes ~~ //
 const catRouter = require('./routes/cat');
-const dogRouter = require('/routes/dogs');
+const dogRouter = require('./routes/dog');
+
+const app = express();
+
 
 app.use(
   morgan(process.env.NODE_ENV === 'production' ? 'common' : 'dev', {
@@ -27,8 +28,8 @@ app.use(
 );
 
 // Use routes GET//
-app.use('/api/cats', catRouter);
-app.use('/api/dogs', dogRouter);
+app.use('/api/cat', catRouter);
+app.use('/api/dog', dogRouter);
 
 function runServer(port = PORT) {
   const server = app
