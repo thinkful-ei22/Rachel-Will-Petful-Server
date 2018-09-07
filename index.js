@@ -39,7 +39,7 @@ dogsQ.enqueue({
   breed: "St. Bernard",
   story: "Owners retired and moved to a tropical climate after deciding they no longer wanted to or needed help to take care of their grandchildren"
 });
-console.log(dogsQ);
+
 
 //Queue instance of CATS
 const catsQ = new Queue();
@@ -93,7 +93,11 @@ catsQ.dequeue();
 app.get('/api/dog', (req, res, next) => {
   return res.json(dogsQ.peek());
 })
-dogsQ.dequeue();
+
+app.delete('/api/dog', (req, res, next) => {
+  dogsQ.dequeue();
+});
+console.log("======");
 
 //
 function runServer(port = PORT) {
