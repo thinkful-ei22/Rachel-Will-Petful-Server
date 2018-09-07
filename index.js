@@ -10,6 +10,10 @@ const { dbConnect } = require('./db-mongoose');
 
 const app = express();
 
+// ~~ GET routes ~~ //
+const catRouter = require('./routes/cats');
+const dogRouter = require('/routes/dogs');
+
 app.use(
   morgan(process.env.NODE_ENV === 'production' ? 'common' : 'dev', {
     skip: (req, res) => process.env.NODE_ENV === 'test'
@@ -21,6 +25,10 @@ app.use(
     origin: CLIENT_ORIGIN
   })
 );
+
+// Use routes GET//
+app.use('/api/cats', catRouter);
+app.use('/api/dogs', dogRouter);
 
 function runServer(port = PORT) {
   const server = app
