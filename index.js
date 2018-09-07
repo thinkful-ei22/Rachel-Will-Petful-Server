@@ -11,7 +11,7 @@ const { dbConnect } = require('./db-mongoose');
 const app = express();
 
 // ~~ GET routes ~~ //
-const catRouter = require('./routes/cats');
+const catRouter = require('./routes/cat');
 const dogRouter = require('/routes/dogs');
 
 app.use(
