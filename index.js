@@ -87,7 +87,10 @@ app.use(
 app.get('/api/cat', (req, res, next) => {
   return res.json(catsQ.peek());
 })
-catsQ.dequeue();
+
+app.delete('/api/cat', (req, res, next) => {
+  catsQ.dequeue();
+});
 
 //---- GET and DELETE first dog ----//
 app.get('/api/dog', (req, res, next) => {
@@ -97,7 +100,6 @@ app.get('/api/dog', (req, res, next) => {
 app.delete('/api/dog', (req, res, next) => {
   dogsQ.dequeue();
 });
-console.log("======");
 
 //
 function runServer(port = PORT) {
